@@ -4,7 +4,6 @@
 #include <iostream>
 #include <direct.h>
 
-using namespace std;
 
 
 
@@ -17,7 +16,8 @@ using namespace std;
 
 
 
-int  CreatFold(string name);
+
+void CreatProject(void);
 
 
 

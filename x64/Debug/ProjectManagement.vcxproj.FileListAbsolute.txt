@@ -1,1 +1,2 @@
 E:\PROJECTS\C++\ProjectManagement\ProjectManagement\x64\Debug\ProjectManagement.exe
+E:\PROJECTS\C++\ProjectManagement\x64\Debug\ProjectManagement.exe
