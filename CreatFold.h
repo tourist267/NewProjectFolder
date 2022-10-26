@@ -4,6 +4,7 @@
 #include <iostream>
 #include <direct.h>
 
+using namespace std;
 
 
 
@@ -16,8 +17,7 @@
 
 
 
-
-void CreatProject(void);
+void CreatProject(string project, string IC);
 
 
 

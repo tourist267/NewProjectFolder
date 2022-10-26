@@ -1,5 +1,5 @@
 #include "CreatFold.h"
-using namespace std;
+
 
 string Hard = "00.硬件设计";
 string Soft = "01.软件设计";
@@ -10,7 +10,6 @@ string Ref = "03.参考代码";
 static int  CreatFold(std::string name)
 {
 	int val;
-
 
 	if (0 == _mkdir(name.c_str()))
 	{
@@ -23,19 +22,45 @@ static int  CreatFold(std::string name)
 		cout << "文件夹" + name + "创建失败" << endl;
 	}
 
-
 	return val;
+}
+static int ICChoose(string IC)
+{
+	
 }
 
 
-void CreatProject(void)
+void CreatProject(string project, string IC)
 {
 	int val;
-	val = CreatFold(Hard);
-	val = CreatFold(Soft);
-	val = CreatFold(Instr);
-	val = CreatFold(Ref);
+	string name;
 
+	name = project;
+	/*创建项目主文件夹*/
+	val = CreatFold(name);
+	if (val)
+	{
+		val = CreatFold(name + "\\" + Hard);
+		/*建立内部文件夹*/
+		if (val)
+		{
+				CreatFold(name + "\\" + Hard + "\\" + "V1.0");
+				CreatFold(name + "\\" + Hard + "\\" + "V1.1");
+				CreatFold(name + "\\" + Hard + "\\" + "V1.2");
+		}
+		
+		
+		val = CreatFold(name + '\\' + Soft);
+		if (val)
+		{
+			CreatFold(name + "\\" + Soft + "\\" + "V1.0"+"-"+  IC);
+			CreatFold(name + "\\" + Soft + "\\" + "V1.1"+"-" + IC);
+			CreatFold(name + "\\" + Soft + "\\" + "V1.2"+"-" + IC);
+		}
+		val = CreatFold(name + '\\' + Instr);
+		val = CreatFold(name + '\\' + Ref);
+	}
+	
 	if (val) { cout << "项目文件夹创建成功" << endl; }
 	else { cout << "项目文件夹创建失败" << endl; }
 	
