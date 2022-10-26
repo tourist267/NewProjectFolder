@@ -13,8 +13,6 @@ int main()
     cin.getline(project, 20);
     cout << "输入主控IC:" << endl;
     cin.getline(IC, 20);
-
-
     CreatProject(project,IC);
   
  

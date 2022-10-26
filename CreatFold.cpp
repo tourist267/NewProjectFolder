@@ -1,11 +1,9 @@
 #include "CreatFold.h"
 
-
 string Hard = "00.硬件设计";
 string Soft = "01.软件设计";
 string Instr = "02.说明文档";
 string Ref = "03.参考代码";
-
 
 static int  CreatFold(std::string name)
 {
@@ -24,18 +22,32 @@ static int  CreatFold(std::string name)
 
 	return val;
 }
-static int ICChoose(string IC)
+string ICEN[] = {"SN8P2501","SN8P5702","SN8P5703","CMS8F2313","CMS8F6980","CMS8F6990","MC51F0003A4","CMS8F2892"\
+,"CMS8F6790","SC92F8003"};
+static string  ICChoose(string IC)
 {
-	
+	int i,num,temp=0;
+	/*获得IC数组个数*/
+	num= sizeof(ICEN) / sizeof(ICEN[0]);
+	/*遍历获取IC在IC数组的元素下标*/
+	for (i = 0; i <=num; i++)
+	{
+		if (-1 == ICEN[i].find(IC)){temp++;}
+		else { break; }
+	}
+	 return ICEN[temp]; 
 }
 
 
-void CreatProject(string project, string IC)
+void CreatProject(string project, string INPUT_IC)
 {
 	int val;
-	string name;
+	string name,IC;
 
 	name = project;
+	
+	IC = ICChoose(INPUT_IC);
+
 	/*创建项目主文件夹*/
 	val = CreatFold(name);
 	if (val)
@@ -53,9 +65,9 @@ void CreatProject(string project, string IC)
 		val = CreatFold(name + '\\' + Soft);
 		if (val)
 		{
-			CreatFold(name + "\\" + Soft + "\\" + "V1.0"+"-"+  IC);
-			CreatFold(name + "\\" + Soft + "\\" + "V1.1"+"-" + IC);
-			CreatFold(name + "\\" + Soft + "\\" + "V1.2"+"-" + IC);
+			CreatFold(name + "\\" + Soft + "\\" + name +"-"+ "V1.0"+"-"+  IC);
+			CreatFold(name + "\\" + Soft + "\\" + name + "-" + "V1.1"+"-" + IC);
+			CreatFold(name + "\\" + Soft + "\\" + name + "-" + "V1.2"+"-" + IC);
 		}
 		val = CreatFold(name + '\\' + Instr);
 		val = CreatFold(name + '\\' + Ref);
