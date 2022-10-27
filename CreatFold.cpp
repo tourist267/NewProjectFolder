@@ -22,20 +22,21 @@ static int  CreatFold(std::string name)
 
 	return val;
 }
-string ICEN[] = {"SN8P2501","SN8P5702","SN8P5703","CMS8F2313","CMS8F6980","CMS8F6990","MC51F0003A4","CMS8F2892"\
-,"CMS8F6790","SC92F8003"};
+string NameIC[] = {"SN8P2501D","SN8F5708","SN8F5702","SN8F5703","CMS80F2313","CMS8S6980","CMS8S6990","MC51F0003A4","SC8F2892"\
+,"CMS8F6790","SC92F8003","SC8F6780","SC8F6790"};
 static string  ICChoose(string IC)
 {
 	int i,num,temp=0;
 	/*获得IC数组个数*/
-	num= sizeof(ICEN) / sizeof(ICEN[0]);
+	num= sizeof(NameIC) / sizeof(NameIC[0]);
+	if (IC == "0") { return ""; }
 	/*遍历获取IC在IC数组的元素下标*/
 	for (i = 0; i <=num; i++)
 	{
-		if (-1 == ICEN[i].find(IC)){temp++;}
+		if (-1 == NameIC[i].find(IC)){temp++;}
 		else { break; }
 	}
-	 return ICEN[temp]; 
+	 return NameIC[temp];
 }
 static void CreatFlie(string filename)
 {
