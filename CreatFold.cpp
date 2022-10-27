@@ -37,12 +37,45 @@ static string  ICChoose(string IC)
 	}
 	 return ICEN[temp]; 
 }
+static void CreatFlie(string filename)
+{
+	ofstream outfile;
+	/*新建版本修改记录文件*/
+	outfile.open(filename);
+	
+	if (filename.find(VESER_RECORD) != -1)
+	{
+		outfile << "V1.0 :" << endl;
+		outfile << "V1.0->V1.1 :" << endl;
+		outfile << "V1.1->V1.2 :" << endl;
+	}
+	else if (filename.find(REQUESTION) != -1)
+	{
+		outfile << "V1.0 :" << endl;
+		outfile << "V1.1 :" << endl;
+		outfile << "V1.2 :" << endl;
+	}
+	else if (filename.find(JOINPEOPLE) != -1) 
+	{
+		outfile << "软件 : 林洪欣" << endl;
+		outfile << "硬件 : " << endl;
+		outfile << "结构 :" << endl;
+		outfile << "业务 :" << endl;
+	}
+	else
+	{
+		;
+	}
+
+	outfile.close();
+}
+
 
 
 void CreatProject(string project, string INPUT_IC)
 {
 	int val;
-	string name,IC;
+	string name,IC,path;
 
 	name = project;
 	
@@ -52,22 +85,38 @@ void CreatProject(string project, string INPUT_IC)
 	val = CreatFold(name);
 	if (val)
 	{
+		/*建立参与人员和需求文件*/
+		CreatFlie(name + "\\" + REQUESTION);
+		CreatFlie(name + "\\" + JOINPEOPLE);
+
 		val = CreatFold(name + "\\" + Hard);
 		/*建立内部文件夹*/
 		if (val)
 		{
-				CreatFold(name + "\\" + Hard + "\\" + "V1.0");
-				CreatFold(name + "\\" + Hard + "\\" + "V1.1");
-				CreatFold(name + "\\" + Hard + "\\" + "V1.2");
+			path = name + "\\" + Hard + "\\";
+			CreatFold(path + "V1.0");
+			CreatFold(path + "V1.1");
+			CreatFold(path + "V1.2");
 		}
-		
 		
 		val = CreatFold(name + '\\' + Soft);
 		if (val)
-		{
-			CreatFold(name + "\\" + Soft + "\\" + name +"-"+ "V1.0"+"-"+  IC);
-			CreatFold(name + "\\" + Soft + "\\" + name + "-" + "V1.1"+"-" + IC);
-			CreatFold(name + "\\" + Soft + "\\" + name + "-" + "V1.2"+"-" + IC);
+		{	/*建立文件夹和版本记录文件*/
+			//V1.0
+			path = name + "\\" + Soft + "\\" + "V1.0" + "\\";
+			CreatFold(path);
+			CreatFold(path + name + "-" + "V1.0" + "-" + IC);
+			CreatFlie(path + VESER_RECORD);
+			//V1.1
+			path = name + "\\" + Soft + "\\" + "V1.1" + "\\";
+			CreatFold(path);
+			CreatFold(path + name + "-" + "V1.1"+"-" + IC);
+			CreatFlie(path + VESER_RECORD);
+			//V1.2
+			path = name + "\\" + Soft + "\\" + "V1.2" + "\\";
+			CreatFold(path);
+			CreatFold(path + name + "-" + "V1.2"+"-" + IC);
+			CreatFlie(path + VESER_RECORD);
 		}
 		val = CreatFold(name + '\\' + Instr);
 		val = CreatFold(name + '\\' + Ref);
