@@ -1,2 +1,5 @@
 ﻿  CreatFold.cpp
-  ProjectManagement.vcxproj -> E:\PROJECTS\C++\ProjectManagement\x64\Debug\ProjectManagement.exe
+  ProjectManagement.cpp
+  正在生成代码...
+  LINK : 没有找到 E:\projects\C++\NewProjectFolder\x64\Debug\ProjectManagement.exe 或上一个增量链接没有生成它；正在执行完全链接
+  ProjectManagement.vcxproj -> E:\projects\C++\NewProjectFolder\x64\Debug\ProjectManagement.exe

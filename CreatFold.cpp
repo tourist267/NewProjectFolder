@@ -23,7 +23,7 @@ static int  CreatFold(std::string name)
 	return val;
 }
 string NameIC[] = {"SN8P2501D","SN8F5708","SN8F5702","SN8F5703","CMS80F2313","CMS8S6980","CMS8S6990","MC51F0003A4","SC8F2892"\
-,"CMS8F6790","SC92F8003","SC8F6780","SC8F6790"};
+,"CMS8F6790","SC92F8003","SC8F6780","SC8F6790", "MC51F8124" };
 static string  ICChoose(string IC)
 {
 	int i,num,temp=0;
@@ -53,15 +53,15 @@ static void CreatFlie(string filename)
 	else if (filename.find(REQUESTION) != -1)
 	{
 		outfile << "V1.0 :" << endl;
-		outfile << "V1.1 :" << endl;
-		outfile << "V1.2 :" << endl;
+		//outfile << "V1.1 :" << endl;
+		//outfile << "V1.2 :" << endl;
 	}
 	else if (filename.find(JOINPEOPLE) != -1) 
 	{
 		outfile << "软件 : 林洪欣" << endl;
 		outfile << "硬件 : " << endl;
-		outfile << "结构 :" << endl;
-		outfile << "业务 :" << endl;
+		outfile << "结构 : " << endl;
+		outfile << "业务 : " << endl;
 	}
 	else
 	{
@@ -92,14 +92,17 @@ void CreatProject(string project, string INPUT_IC)
 
 		val = CreatFold(name + "\\" + Hard);
 		/*建立内部文件夹*/
+
+		//硬件文件夹
 		if (val)
 		{
 			path = name + "\\" + Hard + "\\";
 			CreatFold(path + "V1.0");
-			CreatFold(path + "V1.1");
-			CreatFold(path + "V1.2");
+			//CreatFold(path + "V1.1");
+			//CreatFold(path + "V1.2");
 		}
 		
+		//软件文件夹
 		val = CreatFold(name + '\\' + Soft);
 		if (val)
 		{	/*建立文件夹和版本记录文件*/
@@ -109,15 +112,15 @@ void CreatProject(string project, string INPUT_IC)
 			CreatFold(path + name + "-" + "V1.0" + "-" + IC);
 			CreatFlie(path + VESER_RECORD);
 			//V1.1
-			path = name + "\\" + Soft + "\\" + "V1.1" + "\\";
-			CreatFold(path);
-			CreatFold(path + name + "-" + "V1.1"+"-" + IC);
-			CreatFlie(path + VESER_RECORD);
-			//V1.2
-			path = name + "\\" + Soft + "\\" + "V1.2" + "\\";
-			CreatFold(path);
-			CreatFold(path + name + "-" + "V1.2"+"-" + IC);
-			CreatFlie(path + VESER_RECORD);
+			//path = name + "\\" + Soft + "\\" + "V1.1" + "\\";
+			//CreatFold(path);
+			//CreatFold(path + name + "-" + "V1.1"+"-" + IC);
+			//CreatFlie(path + VESER_RECORD);
+			////V1.2
+			//path = name + "\\" + Soft + "\\" + "V1.2" + "\\";
+			//CreatFold(path);
+			//CreatFold(path + name + "-" + "V1.2"+"-" + IC);
+			//CreatFlie(path + VESER_RECORD);
 		}
 		val = CreatFold(name + '\\' + Instr);
 		val = CreatFold(name + '\\' + Ref);
